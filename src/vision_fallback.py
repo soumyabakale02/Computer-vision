@@ -1,17 +1,4 @@
-"""GPT-4o vision fallback detector.
 
-The primary detector is the Roboflow model, whose training set does not cover
-every class the severity and BOQ engines support: honeycombing in particular
-appears in none of the source datasets, and coverage of the finish/durability
-defects is thin. For those images we run a second-pass detection with a GPT
-vision model, which identifies the defect and an approximate bounding box.
-Results are returned in the SAME shape as the Roboflow predictions (centre-based
-x, y, width, height in pixels) so the rest of the pipeline (severity grading,
-annotation, reporting) is unchanged.
-
-Every detection produced here is clearly tagged ``source = "GPT-4o vision"`` so
-the report never presents an LLM guess as if it were the trained detector.
-"""
 
 from __future__ import annotations
 
